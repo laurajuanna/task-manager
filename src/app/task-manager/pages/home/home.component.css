@@ -1,8 +1,10 @@
 .container {
-    padding: 1rem;
+    padding: 0 1rem;
+    color: #505050;
 }
 
 .container h1 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     margin: 0.5rem 0;
+    font-weight: 300;
 }

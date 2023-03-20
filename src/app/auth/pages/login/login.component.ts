@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 export class LoginComponent {
 
   public loginForm: FormGroup = this.fb.group({
-    userid: ['', [Validators.required, Validators.minLength(8)]],
-    password: ['', [Validators.required, Validators.minLength(4)]]
+    userid: ['Admin', [Validators.required, Validators.minLength(5)]],
+    password: ['admin', [Validators.required, Validators.minLength(4)]]
   });
 
   public visibility: boolean = false;
@@ -48,7 +48,7 @@ export class LoginComponent {
     }
 
     this.loading = true;
-    if (password === 'itpatagonia') {
+    if (password === 'admin') {
       this.navigateToHome()
     }
     /* TODO this.authService.login(data).subscribe(rs => {

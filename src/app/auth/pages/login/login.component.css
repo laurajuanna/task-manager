@@ -1,4 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 /*@import "@fontsource/source-sans-pro";*/
+
+:root {
+    --main-color: #3f51b5;
+}
 
 .content-custom {
     background-color: #ededed;
@@ -7,13 +12,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     margin-bottom: 1rem;
 }
 
@@ -22,11 +27,13 @@
 }
 
 h1 {
-    font: 0.8rem 'Source Sans Pro', sans-serif;
-    color: #d01b1b;
-    font-weight: bold;
+    font: 1.2rem 'Roboto', sans-serif;
+    color: #3f51b5;
+    font-weight: 400;
     text-align: start;
     margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 4px;
 }
 
 .form-content {
@@ -78,7 +85,7 @@ h1 {
 }
 
 .label-custom {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: bold;
     color: #4D565F;
     font-size: 12px;
@@ -99,8 +106,8 @@ h1 {
 
 .button-custom {
     color: white;
-    font-family: 'Source Sans Pro', sans-serif;
-    background: #c7212b;
+    font-family: 'Roboto', sans-serif;
+    background: #3f51b5;
     border: none;
     padding: 10px 25px;
     text-transform: uppercase;
@@ -109,7 +116,7 @@ h1 {
 }
 
 .button-custom:hover {
-    background-color: #9b000a;
+    background-color: #3f51b5;
 }
 
 .button-custom:disabled {
