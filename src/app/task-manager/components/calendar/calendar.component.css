@@ -1,0 +1,18 @@
+.calendario {
+    width: 75vw;
+    font-family: 'Roboto', sans-serif;
+}
+
+.fc-toolbar.fc-header-toolbar {
+    margin-bottom: 0.5rem;
+}
+
+.fc-toolbar h2 {
+    font-size: 1.2rem;
+}
+
+.fc-toolbar h2,
+.fc.fc-unthemed .fc-view-container th {
+    text-transform: capitalize;
+    font-weight: 400;
+}

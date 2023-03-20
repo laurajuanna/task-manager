@@ -1,0 +1,143 @@
+/*@import "@fontsource/source-sans-pro";*/
+
+.content-custom {
+    background-color: #ededed;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.logo {
+    width: 85px;
+}
+
+h1 {
+    font: 0.8rem 'Source Sans Pro', sans-serif;
+    color: #d01b1b;
+    font-weight: bold;
+    text-align: start;
+    margin: 0;
+}
+
+.form-content {
+    width: 300px;
+    background-color: rgba(245, 245, 245, 0.9);
+    padding: 2rem;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 5px 5px 8px 0px #e0dddd;
+}
+
+.input-content {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.input-password {
+    display: flex;
+    gap: 10px;
+}
+
+.input-custom {
+    outline: none;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1.5px solid #cdcdcd;
+    padding: 4px 0px;
+    font-size: 12px;
+    color: gray;
+}
+
+.input-custom.uppercase {
+    text-transform: uppercase;
+}
+
+.input-custom.grow {
+    flex-grow: 1;
+}
+
+.input-custom:focus {
+    border-color: #31a1d4;
+}
+
+::placeholder {
+    color: #a0a0a0;
+}
+
+.label-custom {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+    color: #4D565F;
+    font-size: 12px;
+}
+
+.button-content {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.loader-custom {
+    position: absolute;
+    right: 60px;
+}
+
+.button-custom {
+    color: white;
+    font-family: 'Source Sans Pro', sans-serif;
+    background: #c7212b;
+    border: none;
+    padding: 10px 25px;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 180px;
+}
+
+.button-custom:hover {
+    background-color: #9b000a;
+}
+
+.button-custom:disabled {
+    background-color: #eebcbf;
+}
+
+.show-button {
+    flex-grow: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+.show-icon {
+    color: #a0a0a0;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.show-button:disabled>.show-icon {
+    color: #c3c2c2;
+}

@@ -1,0 +1,35 @@
+<div class="content-custom">
+    <section class="form-content">
+        <div class="header">
+            <h1>Task Manager</h1>
+            <!--img class="logo" src="assets/images/logos/logoICBC.png" alt="logo icbc" /-->
+        </div>
+        <form autocomplete="off" [formGroup]="loginForm" spellcheck="false">
+            <div class="input-content">
+                <label class="label-custom">Usuario</label>
+                <input type="email" class="input-custom uppercase" name="userid" formControlName="userid"
+                    autocomplete="off">
+            </div>
+            <div class="input-content">
+                <label class="label-custom">Contraseña</label>
+                <div class="input-password">
+                    <input [type]="visibility ? 'text' : 'password'" class="input-custom grow" name="password"
+                        formControlName="password">
+                    <button type="button" class="show-button" (click)="toggleVisibility()"
+                        [disabled]="loginForm.value.password === ''">
+                        <mat-icon class="show-icon">
+                            {{visibility ? 'visibility_off' : 'visibility'}}
+                        </mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="button-content">
+                <button type="submit" class="button-custom" type="submit" [disabled]="loginForm.invalid"
+                    (click)="login()">
+                    Ingresar
+                </button>
+                <loader class="loader-custom" *ngIf="loading"></loader>
+            </div>
+        </form>
+    </section>
+</div>
