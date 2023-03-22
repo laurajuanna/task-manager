@@ -1,0 +1,36 @@
+<div class="content">
+  <p-table [columns]="cols" [value]="items" styleClass="p-datatable-sm">
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns">
+          {{col.header}}
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns">
+          <ng-container *ngIf="col.field !== 'color'">
+            {{rowData[col.field]}}
+          </ng-container>
+          <ng-container *ngIf="col.field === 'color'">
+            <span class="color-tag" [attr.style]="'background-color:' + rowData[col.field]"></span>
+          </ng-container>
+        </td>
+        <td>
+          <button class="icon-button" (click)="editEntity(rowData)">
+            <mat-icon class="icon-custom">edit</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage" let-columns>
+      <tr>
+        <td [attr.colspan]="columns.length">
+          No hay registros añadidos
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

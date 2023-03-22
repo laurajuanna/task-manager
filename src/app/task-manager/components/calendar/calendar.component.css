@@ -1,5 +1,4 @@
 .calendario {
-    width: 75vw;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -13,8 +12,11 @@
 
 .fc-toolbar h2,
 .fc.fc-unthemed .fc-view-container th {
-    text-transform: capitalize;
+    text-transform: uppercase;
     font-weight: 400;
+    font-size: 15px;
+    letter-spacing: 2px;
+    padding: 5px 0;
 }
 
 .fc-content {
@@ -23,4 +25,49 @@
     display: flex;
     gap: 10px;
     align-items: center;
+}
+
+.fc.fc-unthemed .fc-toolbar .fc-button {
+    color: #3f51b5eb;
+    background: transparent;
+    border: 1px solid #3f51b5eb;
+    border-radius: 0 !important;
+    padding: 5px;
+}
+
+.fc.fc-unthemed .fc-toolbar .fc-button.fc-dayGridMonth-button,
+.fc.fc-unthemed .fc-toolbar .fc-button.fc-timeGridWeek-button,
+.fc.fc-unthemed .fc-toolbar .fc-button.fc-timeGridDay-button {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: #dadada;
+    border: 1px solid #dadada;
+    color: #5c5c5c;
+    padding: 1px 10px;
+}
+
+.fc.fc-unthemed .fc-toolbar .fc-button.fc-dayGridMonth-button.fc-button-active,
+.fc.fc-unthemed .fc-toolbar .fc-button.fc-timeGridWeek-button.fc-button-active,
+.fc.fc-unthemed .fc-toolbar .fc-button.fc-timeGridDay-button.fc-button-active {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: #3f51b5eb !important;
+    border-color: #3f51b5eb !important;
+    color: white;
+}
+
+.fc.fc-unthemed .fc-toolbar .fc-button.fc-dayGridMonth-button.fc-button-active:hover,
+.fc.fc-unthemed .fc-toolbar .fc-button.fc-timeGridWeek-button.fc-button-active:hover,
+.fc.fc-unthemed .fc-toolbar .fc-button.fc-timeGridDay-button.fc-button-active:hover {
+    color: white;
+}
+
+th.fc-axis.fc-widget-header {
+    width: 26.9688px !important;
+}
+
+.fc-content>.fc-time {
+    font-weight: bold;
 }

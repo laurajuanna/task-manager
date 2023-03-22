@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, EventEmitter, Output, Input } from '@angular/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import { OptionsInput } from '@fullcalendar/core';
 
 const esLocale = require('@fullcalendar/core/locales/es');
 
@@ -11,16 +12,24 @@ const esLocale = require('@fullcalendar/core/locales/es');
   styleUrls: ['./calendar.component.css'],
   encapsulation: ViewEncapsulation.None
 })
+
 export class CalendarComponent implements OnInit {
 
-  public events!: any[];
-  public options!: any;
+  @Input()
+  events!: any[];
+
+  @Output()
+  propagar = new EventEmitter<object>();
+
+  //public events!: any[];
+  public options!: OptionsInput;
 
   constructor() {
     this.options = {
       plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
-      defaulDate: new Date(),
-      height: 480,
+      timeZone: 'America/Argentina/Buenos_Aires',
+      allDaySlot: false,
+      height: window.innerHeight - 110,
       defaultView: 'timeGridDay',
       locale: esLocale,
       header: {
@@ -34,41 +43,48 @@ export class CalendarComponent implements OnInit {
       eventClick: this.selectEvent.bind(this),
       minTime: "09:00:00",
       maxTime: "18:00:00",
+      eventRender: (e) => {
+        console.log(e);
+        /*var tooltip = new Tooltip(e.el, {
+          title: "<h6>" + e.event.title + "</h6>" + e.event.extendedProps.description,
+          placement: 'top',
+          trigger: 'hover',
+          container: 'body',
+          html: true
+        });*/
+      },
     }
   }
 
   ngOnInit() {
-    this.events = [
-      {
-        title: 'Evento 2',
-        color: '#8ac2da',
-        eventTextColor: '#f00',
-        start: new Date('Sun Mar 17 2023 13:50:50 GMT-0300 (hora estándar de Argentina)'),
-        description: 'Esta es la descripción'
-      },
-      {
-        title: 'Evento 1',
-        color: '#9dfe77b3',
-        eventTextColor: '#f00',
-        start: new Date('Sun Mar 17 2023 13:00:00 GMT-0300 (hora estándar de Argentina)'),
-        end: new Date('Sun Mar 17 2023 13:40:00 GMT-0300 (hora estándar de Argentina)'),
-        description: 'Esta es la descripción'
-      },
-      {
-        title: 'Evento 3',
-        date: '2023-03-03',
-        description: 'Esta es la descripción'
-      }
-    ]
   }
 
   public handleDateClick(arg: any) {
-    console.log('fecha seleccionada', arg.dateStr)
+    const { dateStr } = arg;
+    this.propagar.emit({
+      new: true,
+      fecha: dateStr.substr(0, 10),
+      desde: dateStr.substr(11, 5),
+      hasta: dateStr.substr(11, 5)
+    })
   }
 
 
   public selectEvent(arg: any) {
-    const { title, extendedProps } = arg.event;
-    console.log('evento', title, extendedProps.description)
+    const { id, title, extendedProps, start, end, backgroundColor } = arg.event;
+    const fecha = start.toJSON().substr(0, 10);
+    const desde = start.toJSON().substr(11, 5);
+    const hasta = end?.toJSON().substr(11, 5);
+    this.propagar.emit({
+      new: false,
+      id: id,
+      titulo: title,
+      descripcion: extendedProps.description,
+      fecha: fecha,
+      desde: desde,
+      hasta: hasta,
+      color: backgroundColor,
+      projectId: extendedProps.projectId
+    })
   }
 }

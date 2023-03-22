@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="header-action">
+    <h1>Proyectos</h1>
+    <button (click)="newProject()" pButton pRipple type="button" icon="pi pi-plus"
+      class="p-button-rounded p-button-text"></button>
+  </div>
+  <app-table [cols]="cols" [items]="projects" (propagar)="propagar($event)"></app-table>
+  <p-sidebar [(visible)]="sidenav" position="right" [baseZIndex]="10000">
+    <h1>{{tituloForm}}</h1>
+    <form [formGroup]="form">
+      <div class="has-columns">
+        <div class="form-row">
+          <label for="name">Nombre</label>
+          <input type="text" formControlName="name">
+        </div>
+        <div class="form-row small">
+          <label for="dt">DT</label>
+          <input type="text" formControlName="dt">
+        </div>
+        <div class="form-row">
+          <label for="color">Color</label>
+          <input type="color" name="color" formControlName="color">
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="description">Descripción</label>
+        <input type="text" formControlName="description">
+      </div>
+      <div class="form-row">
+        <label for="notes">Notas</label>
+        <textarea formControlName="notes" name="notes" rows="2" cols="50"></textarea>
+      </div>
+      <button class="button-custom" (click)="guardar()">Guardar</button>
+    </form>
+  </p-sidebar>
+</div>

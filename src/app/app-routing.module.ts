@@ -9,7 +9,7 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: 'task',
+    path: 'tasks',
     loadChildren: () => import('./task-manager/task-manager.module').then(m => m.TaskManagerModule),
     canActivate: [AuthenticationGuard],
     canLoad: [AuthenticationGuard]

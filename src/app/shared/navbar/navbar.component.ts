@@ -12,7 +12,9 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.items = [
-      { label: 'Gestión', icon: 'pi pi-fw pi-check-square' }
+      { label: 'Calendario', icon: 'pi pi-fw pi-calendar', routerLink: "/tasks/calendar" },
+      { label: 'Projectos', icon: 'pi pi-fw pi-check-square', routerLink: "/tasks/projects" }
+
     ];
   }
 }

@@ -10,10 +10,12 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button'
 import { MenubarModule } from 'primeng/menubar';
 import { TabViewModule } from 'primeng/tabview';
+import { SidebarModule } from 'primeng/sidebar';
 
 import { MatIconModule } from '@angular/material/icon';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoaderComponent } from './loader/loader.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -28,7 +30,10 @@ import { LoaderComponent } from './loader/loader.component';
     RatingModule,
     InputTextModule,
     LoaderComponent,
-    MatIconModule
+    MatIconModule,
+    ButtonModule,
+    SidebarModule,
+    ReactiveFormsModule
   ],
   imports: [
     CommonModule,
@@ -38,7 +43,9 @@ import { LoaderComponent } from './loader/loader.component';
     ButtonModule,
     MenubarModule,
     InputTextModule,
-    TabViewModule
+    TabViewModule,
+    SidebarModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }

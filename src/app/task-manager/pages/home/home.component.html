@@ -1,4 +1,53 @@
 <div class="container">
-    <h1>Gestión de tareas</h1>
-    <calendar></calendar>
+    <div class="header-action">
+        <h1>Calendario</h1>
+        <button (click)="newTask()" pButton pRipple type="button" icon="pi pi-plus"
+            class="p-button-rounded p-button-text"></button>
+    </div>
+    <calendar class="laura" [events]="events" (propagar)="procesaPropagar($event)"></calendar>
+    <p-sidebar [(visible)]="sidenav" position="right" [baseZIndex]="10000">
+        <h1>{{tituloForm}}</h1>
+        <form [formGroup]="form">
+            <div class="form-row">
+                <label for="title">Título</label>
+                <input type="text" formControlName="title">
+            </div>
+            <div class="form-row">
+                <label for="description">Descripción</label>
+                <textarea formControlName="description" name="description" rows="2" cols="50"></textarea>
+            </div>
+            <div class="has-columns">
+                <div class="form-row">
+                    <label for="date">Fecha</label>
+                    <input type="date" formControlName="date">
+                </div>
+                <div class="form-row">
+                    <label for="from">Desde</label>
+                    <input type="time" formControlName="from">
+                </div>
+                <div class="form-row">
+                    <label for="to">Hasta</label>
+                    <input type="time" formControlName="to">
+                </div>
+            </div>
+            <div class="has-columns">
+                <div class="form-row has-project">
+                    <label for="color">Proyecto</label>
+                    <div class="has-columns">
+                        <select #project formControlName="project" name="project" (change)="selectProject($event)">
+                            <option value="-1" hidden>Seleccione</option>
+                            <option *ngFor="let item of projects" [value]="item.id">{{item.nombre}}</option>
+                        </select>
+                        <mat-icon *ngIf="project.value.toString() !== '-1'" (click)="clearSelect()"
+                            class="custom-icon">close</mat-icon>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label for="color">Color</label>
+                    <input type="color" formControlName="color">
+                </div>
+            </div>
+            <button class="button-custom" (click)="guardar()">Guardar</button>
+        </form>
+    </p-sidebar>
 </div>

@@ -15,7 +15,12 @@ body {
 
 body {
     margin: 0;
+    padding: 8px 10vw;
     font-family: 'Roboto', sans-serif;
+}
+
+body:has(>app-root > app-login) {
+    background-color: #ededed;
 }
 
 ::-webkit-scrollbar {
@@ -36,4 +41,23 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+.button-custom {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    background: #3f51b5;
+    border: none;
+    padding: 10px 25px;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 180px;
+}
+
+.button-custom:hover {
+    background-color: #3f51b5;
+}
+
+.button-custom:disabled {
+    background-color: #8f95bb;
 }

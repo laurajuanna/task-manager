@@ -65,7 +65,7 @@ export class LoginComponent {
   }
 
   private navigateToHome() {
-    this.router.navigateByUrl('/task/home');
+    this.router.navigateByUrl('/tasks/calendar');
   }
 
 }

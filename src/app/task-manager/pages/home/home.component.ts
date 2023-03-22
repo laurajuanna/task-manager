@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
-
-const esLocale = require('@fullcalendar/core/locales/es');
+import { FormBuilder } from '@angular/forms';
+import { EventInput } from '@fullcalendar/core'
+import { TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-home',
@@ -15,43 +13,142 @@ const esLocale = require('@fullcalendar/core/locales/es');
 export class HomeComponent implements OnInit {
 
 
-  public events!: any[];
-  public options!: any;
+  public events!: EventInput[];
+  public projects!: any[];
 
-  constructor() {
-    this.options = {
-      plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
-      defaulDate: new Date(),
-      locale: esLocale,
-      header: {
-        left: 'prev,next',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-      },
-      dateClick: this.handleDateClick.bind(this),
-      editable: false,
-      eventClick: this.hola.bind(this),
-      minTime: "09:00:00",
-      maxTime: "18:00:00",
-    }
+  public sidenav: boolean = false;
+
+  public tituloForm!: string;
+
+  constructor(
+    private fb: FormBuilder,
+    private service: TaskService
+  ) {
+  }
+
+  form = this.fb.group({
+    id: [],
+    title: [],
+    description: [],
+    date: [],
+    from: [],
+    to: [],
+    project: [-1],
+    color: []
+  })
+
+  getTasks() {
+    this.service.getTasks().subscribe({
+      next: (rs) => {
+        this.events = rs;
+      }
+    })
+  }
+
+  getProjects() {
+    this.service.getProjects().subscribe({
+      next: (rs) => {
+        this.projects = rs;
+      }
+    })
   }
 
   ngOnInit() {
-    this.events = [
-      { title: 'Evento 2', color: '#8ac2da', start: new Date('Sun Mar 18 2023 13:50:50 GMT-0300 (hora estándar de Argentina)'), description: 'Esta es la descripción' },
-      { title: 'Evento 1', start: new Date('Sun Mar 18 2023 13:25:50 GMT-0300 (hora estándar de Argentina)'), description: 'Esta es la descripción' },
-      { title: 'Evento 3', date: '2023-03-03', description: 'Esta es la descripción' }
-    ]
+    this.getTasks();
+    this.getProjects()
   }
 
-  public handleDateClick(arg: any) {
-    console.log('fecha seleccionada', arg.dateStr)
+  public showSidenav() {
+    this.sidenav = !this.sidenav;
   }
 
+  public newTask(event?: any) {
+    this.form.reset();
+    this.tituloForm = 'Agregar Tarea';
+    this.form.patchValue({ project: -1 })
+    if (event && event.new) {
+      const { fecha, desde } = event;
+      this.form.patchValue({
+        date: fecha,
+        from: desde,
+        to: desde
+      })
+    } else {
+      this.showSidenav();
+    }
+  }
 
-  public hola(arg: any) {
-    const { title, extendedProps } = arg.event;
-    console.log('evento', title, extendedProps.description)
+  private editTask(event: any) {
+    this.form.reset();
+    this.tituloForm = 'Editar Tarea';
+    const { id, titulo, descripcion, fecha, desde, hasta, color, projectId } = event;
+    this.form.patchValue({
+      id: id,
+      title: titulo,
+      description: descripcion,
+      date: fecha,
+      from: desde,
+      to: hasta,
+      project: projectId,
+      color: color
+    })
+    if (projectId !== null && projectId !== -1) {
+      this.form.controls['color'].disable();
+    }
+  }
+
+  public procesaPropagar(event: any) {
+    event.new ? this.newTask(event) : this.editTask(event);
+    this.showSidenav();
+  }
+
+  public guardar() {
+    const { id, title, date, to, from, description, color, project } = this.form.getRawValue();
+    const body = {
+      id: id,
+      title: title,
+      color: color,
+      eventTextColor: '#f00',
+      start: `${date}T${from}:00.000Z`,
+      end: `${date}T${to}:00.000Z`,
+      description: description,
+      projectId: project
+    }
+    this.callToService(body);
+    setTimeout(() => {
+      this.getTasks();
+    }, 500)
+    this.showSidenav();
+  }
+
+  private callToService(body: any) {
+    if (body.id === null) {
+      this.service.postTask(body).subscribe({
+        next: (rs) => {
+          console.log('POST', rs)
+        }
+      })
+    } else {
+      this.service.putTask(body).subscribe({
+        next: (rs) => {
+          console.log('PUT', rs)
+        }
+      })
+    }
+  }
+
+  public clearSelect() {
+    this.form.patchValue({ project: -1, color: null })
+    this.form.controls['color'].enable();
+  }
+
+  public selectProject(select: any) {
+    this.service.getProject(select.target.value).subscribe({
+      next: (rs) => {
+        this.form.patchValue({ color: rs.color });
+        this.form.controls['color'].disable();
+      }
+    })
   }
 
 }

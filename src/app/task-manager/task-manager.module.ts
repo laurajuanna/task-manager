@@ -6,6 +6,9 @@ import { SharedModule } from '../shared/shared.module';
 import { TaskRoutingModule } from './task-routing.module';
 import { FullCalendarModule } from 'primeng/fullcalendar';
 import { CalendarComponent } from './components/calendar/calendar.component';
+import { ProjectsComponent } from './pages/projects/projects.component';
+import { TableComponent } from './pages/projects/components/table/table.component';
+import { TableModule } from 'primeng/table';
 
 
 
@@ -13,13 +16,16 @@ import { CalendarComponent } from './components/calendar/calendar.component';
   declarations: [
     MainComponent,
     HomeComponent,
-    CalendarComponent
+    CalendarComponent,
+    ProjectsComponent,
+    TableComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
     TaskRoutingModule,
-    FullCalendarModule
+    FullCalendarModule,
+    TableModule
   ]
 })
 export class TaskManagerModule { }

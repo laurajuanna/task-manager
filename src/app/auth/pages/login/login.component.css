@@ -7,8 +7,7 @@
 
 .content-custom {
     background-color: #ededed;
-    height: 100vh;
-    width: 100vw;
+    height: calc(100vh - 16px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -102,25 +101,6 @@ h1 {
 .loader-custom {
     position: absolute;
     right: 60px;
-}
-
-.button-custom {
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    background: #3f51b5;
-    border: none;
-    padding: 10px 25px;
-    text-transform: uppercase;
-    cursor: pointer;
-    width: 180px;
-}
-
-.button-custom:hover {
-    background-color: #3f51b5;
-}
-
-.button-custom:disabled {
-    background-color: #eebcbf;
 }
 
 .show-button {

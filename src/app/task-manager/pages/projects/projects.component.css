@@ -63,10 +63,6 @@ select {
     width: 100%;
 }
 
-.form-row.has-project {
-    width: 60%;
-}
-
 .has-columns {
     display: flex;
     gap: 10px;
@@ -77,17 +73,6 @@ select {
     width: auto;
 }
 
-.custom-icon {
-    color: gray;
-    cursor: pointer;
-}
-
-.custom-icon:hover {
-    color: #3f51b5;
-}
-
-input[type=color]:disabled {
-    border: 1px dashed gray;
-    filter: contrast(0.5);
-    cursor: not-allowed;
+.form-row.small {
+    width: 60px;
 }
