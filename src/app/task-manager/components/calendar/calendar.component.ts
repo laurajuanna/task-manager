@@ -3,8 +3,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { OptionsInput } from '@fullcalendar/core';
-
-const esLocale = require('@fullcalendar/core/locales/es');
+import esLocale from '@fullcalendar/core/locales/es';
 
 @Component({
   selector: 'calendar',
