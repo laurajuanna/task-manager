@@ -38,4 +38,8 @@ export class TaskService {
   putProjects(project: any): Observable<any> {
     return this.http.put(`http://localhost:3000/projects/${project.id}`, project)
   }
+
+  deleteProject(id: number): Observable<any> {
+    return this.http.delete(`http://localhost:3000/projects/${id}`);
+  }
 }

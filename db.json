@@ -3,7 +3,7 @@
     {
       "id": 1,
       "title": "ITP Daily 2",
-      "color": "#eab4fd",
+      "color": "#bdfeff",
       "eventTextColor": "#f00",
       "start": "2023-03-21T11:00:00.000Z",
       "end": "2023-03-21T11:30:00.000Z",
@@ -20,16 +20,6 @@
       "description": "dgfdfg\nasd\nasd",
       "projectName": "WTR",
       "projectId": "2"
-    },
-    {
-      "id": 3,
-      "title": "Nuevo",
-      "color": "#ff4747",
-      "eventTextColor": "#f00",
-      "start": "2023-03-21T14:30:00.000Z",
-      "end": "2023-03-21T14:59:00.000Z",
-      "description": "1564",
-      "projectId": -1
     }
   ],
   "projects": [
@@ -37,7 +27,7 @@
       "id": 1,
       "nombre": "PORTAL",
       "dt": "345",
-      "color": "#eab4fd",
+      "color": "#bdfeff",
       "descripcion": "Portal de Novedades ITP",
       "notas": "Responsable: Julio Lanzani.\nLinks de interes: http://www.google.com.ar"
     },
@@ -56,14 +46,6 @@
       "color": "#ff1100",
       "descripcion": "Sistema de Deudores",
       "notas": "responsable: pablo forestano"
-    },
-    {
-      "id": 4,
-      "nombre": "SCP",
-      "dt": "789",
-      "color": "#fdf512",
-      "descripcion": "Sistema de Cartera Prendaria",
-      "notas": "Responsable: Pablo Forestano."
     }
   ]
 }

@@ -61,7 +61,8 @@ export class ProjectsComponent implements OnInit {
   }
 
   public propagar(info: any) {
-    this.editProyect(info);
+    info.method && this.deleteProject(info.item.id);
+    !info.method && this.editProyect(info);
   }
 
   public newProject() {
@@ -98,10 +99,19 @@ export class ProjectsComponent implements OnInit {
     }
     this.metodo === 'nuevo' && this.service.postProjects(body).subscribe()
     this.metodo === 'editar' && this.service.putProjects(body).subscribe({
-      complete: () => { this.updateProjectColor(body) },
+      complete: () => {
+        this.updateProjectColor(body);
+        this.getProjects();
+      },
     })
     this.showSidenav();
-    this.getProjects();
+  }
+
+  public deleteProject(id: number) {
+    this.service.deleteProject(id).subscribe({
+      next: (rs) => { console.log('elimine') },
+      complete: () => { this.getProjects() }
+    })
   }
 
   public showSidenav() {

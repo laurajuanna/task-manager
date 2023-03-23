@@ -41,17 +41,7 @@ export class CalendarComponent implements OnInit {
       weekends: false,
       eventClick: this.selectEvent.bind(this),
       minTime: "09:00:00",
-      maxTime: "18:00:00",
-      eventRender: (e) => {
-        console.log(e);
-        /*var tooltip = new Tooltip(e.el, {
-          title: "<h6>" + e.event.title + "</h6>" + e.event.extendedProps.description,
-          placement: 'top',
-          trigger: 'hover',
-          container: 'body',
-          html: true
-        });*/
-      },
+      maxTime: "18:00:00"
     }
   }
 
@@ -70,6 +60,7 @@ export class CalendarComponent implements OnInit {
 
 
   public selectEvent(arg: any) {
+    console.log('args', arg)
     const { id, title, extendedProps, start, end, backgroundColor } = arg.event;
     const fecha = start.toJSON().substr(0, 10);
     const desde = start.toJSON().substr(11, 5);

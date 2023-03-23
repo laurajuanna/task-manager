@@ -19,9 +19,14 @@
           </ng-container>
         </td>
         <td>
-          <button class="icon-button" (click)="editEntity(rowData)">
-            <mat-icon class="icon-custom">edit</mat-icon>
-          </button>
+          <div class="actions">
+            <button class="icon-button" (click)="editEntity(rowData)">
+              <mat-icon class="icon-custom">edit</mat-icon>
+            </button>
+            <button class="icon-button" (click)="deleteEntity(rowData)">
+              <mat-icon class="icon-custom">delete</mat-icon>
+            </button>
+          </div>
         </td>
       </tr>
     </ng-template>
@@ -34,3 +39,5 @@
     </ng-template>
   </p-table>
 </div>
+
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>

@@ -11,6 +11,8 @@ import { ButtonModule } from 'primeng/button'
 import { MenubarModule } from 'primeng/menubar';
 import { TabViewModule } from 'primeng/tabview';
 import { SidebarModule } from 'primeng/sidebar';
+import { TooltipModule } from 'primeng/tooltip';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { MatIconModule } from '@angular/material/icon';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -33,7 +35,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     ButtonModule,
     SidebarModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ConfirmDialogModule
   ],
   imports: [
     CommonModule,
@@ -45,7 +48,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     InputTextModule,
     TabViewModule,
     SidebarModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TooltipModule
   ]
 })
 export class SharedModule { }
