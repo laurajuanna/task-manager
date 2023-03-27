@@ -23,6 +23,10 @@ export class TaskService {
     return this.http.put(`http://localhost:3000/tasks/${task.id}`, task)
   }
 
+  deleteTask(id: number): Observable<any> {
+    return this.http.delete(`http://localhost:3000/tasks/${id}`);
+  }
+
   getProjects() {
     return this.http.get<any>(`http://localhost:3000/projects`)
   }

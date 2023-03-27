@@ -1,12 +1,25 @@
 <div class="container">
     <div class="header-action">
         <h1>Calendario</h1>
+        <ul class="project-tags">
+            <li *ngFor="let item of projects">
+                <span class="tag-color" [ngStyle]="{'background-color': item.color ? item.color : '#e8eaf6'}"></span>
+                {{item.nombre}}
+            </li>
+        </ul>
         <button (click)="newTask()" pButton pRipple type="button" icon="pi pi-plus"
             class="p-button-rounded p-button-text"></button>
     </div>
-    <calendar class="laura" [events]="events" (propagar)="procesaPropagar($event)"></calendar>
+
+    <calendar [events]="events" (propagar)="procesaPropagar($event)"></calendar>
+
     <p-sidebar [(visible)]="sidenav" position="right" [baseZIndex]="10000">
-        <h1>{{tituloForm}}</h1>
+        <div class="form-header">
+            <h1>{{tituloForm}}</h1>
+            <button *ngIf="isEditing" class="icon-button" (click)="deleteTask()">
+                <mat-icon class="icon-custom">delete</mat-icon>
+            </button>
+        </div>
         <form [formGroup]="form">
             <div class="form-row">
                 <label for="title">Título</label>
@@ -32,10 +45,12 @@
             </div>
             <div class="has-columns">
                 <div class="form-row has-project">
-                    <label for="color">Proyecto</label>
+                    <label for="color">Categoría</label>
                     <div class="has-columns">
                         <select #project formControlName="project" name="project" (change)="selectProject($event)">
                             <option value="-1" hidden>Seleccione</option>
+                            <option *ngIf="projects && projects.length === 0" value="-2" disabled>No hay categorías
+                                añadidas</option>
                             <option *ngFor="let item of projects" [value]="item.id">{{item.nombre}}</option>
                         </select>
                         <mat-icon *ngIf="project.value.toString() !== '-1'" (click)="clearSelect()"

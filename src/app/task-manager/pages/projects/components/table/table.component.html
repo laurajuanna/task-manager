@@ -1,5 +1,5 @@
 <div class="content">
-  <p-table [columns]="cols" [value]="items" styleClass="p-datatable-sm">
+  <p-table [columns]="cols" [value]="items" styleClass="p-datatable-sm" [loading]="loading">
     <ng-template pTemplate="header" let-columns>
       <tr>
         <th *ngFor="let col of columns">
@@ -12,7 +12,7 @@
       <tr>
         <td *ngFor="let col of columns">
           <ng-container *ngIf="col.field !== 'color'">
-            {{rowData[col.field]}}
+            {{rowData[col.field] ? rowData[col.field] : '---'}}
           </ng-container>
           <ng-container *ngIf="col.field === 'color'">
             <span class="color-tag" [attr.style]="'background-color:' + rowData[col.field]"></span>
@@ -39,5 +39,3 @@
     </ng-template>
   </p-table>
 </div>
-
-<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>

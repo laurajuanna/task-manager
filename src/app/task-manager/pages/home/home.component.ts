@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { EventInput } from '@fullcalendar/core'
+import * as moment from 'moment';
+import { ConfirmationService } from 'primeng/api';
 import { TaskService } from 'src/app/services/task.service';
 
 @Component({
@@ -20,9 +22,12 @@ export class HomeComponent implements OnInit {
 
   public tituloForm!: string;
 
+  public isEditing: boolean = false;
+
   constructor(
     private fb: FormBuilder,
-    private service: TaskService
+    private service: TaskService,
+    private confirmationService: ConfirmationService
   ) {
   }
 
@@ -34,7 +39,8 @@ export class HomeComponent implements OnInit {
     from: [],
     to: [],
     project: [-1],
-    color: []
+    color: [],
+    duration: []
   })
 
   getTasks() {
@@ -64,6 +70,7 @@ export class HomeComponent implements OnInit {
 
   public newTask(event?: any) {
     this.form.reset();
+    this.isEditing = false;
     this.tituloForm = 'Agregar Tarea';
     this.form.patchValue({ project: -1 })
     if (event && event.new) {
@@ -80,8 +87,9 @@ export class HomeComponent implements OnInit {
 
   private editTask(event: any) {
     this.form.reset();
+    this.isEditing = true;
     this.tituloForm = 'Editar Tarea';
-    const { id, titulo, descripcion, fecha, desde, hasta, color, projectId } = event;
+    const { id, titulo, descripcion, fecha, desde, hasta, color, projectId, duracion } = event;
     this.form.patchValue({
       id: id,
       title: titulo,
@@ -90,7 +98,8 @@ export class HomeComponent implements OnInit {
       from: desde,
       to: hasta,
       project: projectId,
-      color: color
+      color: color,
+      duration: duracion
     })
     if (projectId !== null && projectId !== -1) {
       this.form.controls['color'].disable();
@@ -104,6 +113,15 @@ export class HomeComponent implements OnInit {
 
   public guardar() {
     const { id, title, date, to, from, description, color, project } = this.form.getRawValue();
+
+    const fechaDesde = new Date(`${date}T${from}:00.000Z`);
+    const fechaHasta = from ? new Date(`${date}T${to}:00.000Z`) : null;
+
+    const dura = fechaDesde !== null ?
+      moment.duration(moment(fechaHasta).diff(moment(fechaDesde))).asHours() : 1;
+
+    // const duracion = end ? moment .duration(moment(end).diff(moment(start))).asHours() : 1;
+
     const body = {
       id: id,
       title: title,
@@ -112,8 +130,10 @@ export class HomeComponent implements OnInit {
       start: `${date}T${from}:00.000Z`,
       end: `${date}T${to}:00.000Z`,
       description: description,
-      projectId: project
+      projectId: project,
+      duration: dura
     }
+
     this.callToService(body);
     setTimeout(() => {
       this.getTasks();
@@ -149,6 +169,29 @@ export class HomeComponent implements OnInit {
         this.form.controls['color'].disable();
       }
     })
+  }
+
+  private onAcceptDelete() {
+    const { id } = this.form.getRawValue()
+    this.service.deleteTask(id).subscribe({
+      next: (rs) => {
+        this.getTasks();
+        this.showSidenav();
+      }
+    })
+  }
+
+  public deleteTask() {
+    this.confirmationService.confirm({
+      message: '¿Quieres eliminar este registro?',
+      header: 'Confirmar eliminación',
+      icon: 'pi pi-info-circle',
+      acceptLabel: 'Aceptar',
+      rejectLabel: 'Cancelar',
+      accept: () => {
+        this.onAcceptDelete();
+      }
+    });
   }
 
 }

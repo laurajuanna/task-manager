@@ -1,11 +1,10 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.css'],
-  providers: [ConfirmationService, MessageService]
+  styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
 
@@ -16,11 +15,13 @@ export class TableComponent implements OnInit {
   public items!: any[];
 
   @Output()
-  propagar = new EventEmitter<object>();
+  public propagar = new EventEmitter<object>();
+
+  @Input()
+  public loading!: boolean;
 
   constructor(
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
   ) { }
 
   ngOnInit() {

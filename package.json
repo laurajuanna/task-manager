@@ -24,6 +24,7 @@
     "@fullcalendar/interaction": "^4.4.2",
     "@fullcalendar/timegrid": "^4.4.2",
     "material-icons": "^1.13.3",
+    "moment": "^2.29.4",
     "primeicons": "^4.1.0",
     "primeng": "^12.1.0-rc.1",
     "rxjs": "~6.6.0",

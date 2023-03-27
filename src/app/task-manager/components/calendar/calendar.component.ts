@@ -60,7 +60,6 @@ export class CalendarComponent implements OnInit {
 
 
   public selectEvent(arg: any) {
-    console.log('args', arg)
     const { id, title, extendedProps, start, end, backgroundColor } = arg.event;
     const fecha = start.toJSON().substr(0, 10);
     const desde = start.toJSON().substr(11, 5);

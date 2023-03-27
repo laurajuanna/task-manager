@@ -17,6 +17,8 @@ export class ProjectsComponent implements OnInit {
 
   public tituloForm!: string;
 
+  public loading: boolean = false;
+
   public cols: any[] = [
     { field: "nombre", header: "Nombre" },
     { field: "dt", header: "DT" },
@@ -45,9 +47,11 @@ export class ProjectsComponent implements OnInit {
   })
 
   private getProjects() {
+    this.loading = true;
     this.service.getProjects().subscribe({
       next: (rs) => {
         this.projects = rs;
+        this.loading = false;
       }
     })
   }
@@ -68,13 +72,13 @@ export class ProjectsComponent implements OnInit {
   public newProject() {
     this.metodo = 'nuevo';
     this.form.reset();
-    this.tituloForm = 'Agregar Proyecto';
+    this.tituloForm = 'Agregar Categoría';
     this.showSidenav();
   }
 
   public editProyect(item: any) {
     this.metodo = 'editar';
-    this.tituloForm = 'Editar Proyecto';
+    this.tituloForm = 'Editar Categoría';
     const { id, nombre, dt, descripcion, notas, color } = item;
     this.form.patchValue({
       id: id,
@@ -97,7 +101,9 @@ export class ProjectsComponent implements OnInit {
       descripcion: description,
       notas: notes
     }
-    this.metodo === 'nuevo' && this.service.postProjects(body).subscribe()
+    this.metodo === 'nuevo' && this.service.postProjects(body).subscribe({
+      complete: () => this.getProjects()
+    })
     this.metodo === 'editar' && this.service.putProjects(body).subscribe({
       complete: () => {
         this.updateProjectColor(body);

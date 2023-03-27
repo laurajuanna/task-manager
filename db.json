@@ -2,50 +2,163 @@
   "tasks": [
     {
       "id": 1,
-      "title": "ITP Daily 2",
-      "color": "#bdfeff",
+      "title": "Lazy generico",
+      "color": "#ffb8b8",
       "eventTextColor": "#f00",
-      "start": "2023-03-21T11:00:00.000Z",
-      "end": "2023-03-21T11:30:00.000Z",
-      "description": "La descripción es esta ",
-      "projectId": "1"
+      "start": "2023-03-27T09:00:00.000Z",
+      "end": "2023-03-27T11:00:00.000Z",
+      "description": null,
+      "projectId": "2",
+      "duration": 2
     },
     {
       "id": 2,
-      "title": "Call",
-      "color": "#8EE194",
+      "title": "Daily",
+      "color": "#4b7dce",
       "eventTextColor": "#f00",
-      "start": "2023-03-21T13:00:00.000Z",
-      "end": "2023-03-21T14:00:00.000Z",
-      "description": "dgfdfg\nasd\nasd",
-      "projectName": "WTR",
-      "projectId": "2"
+      "start": "2023-03-27T11:00:00.000Z",
+      "end": "2023-03-27T11:30:00.000Z",
+      "description": null,
+      "projectId": "5",
+      "duration": 0.5
+    },
+    {
+      "id": 3,
+      "title": "Lazy Generico",
+      "color": "#ffb8b8",
+      "eventTextColor": "#f00",
+      "start": "2023-03-27T11:30:00.000Z",
+      "end": "2023-03-27T13:00:00.000Z",
+      "description": "",
+      "projectId": "2",
+      "duration": 1.5
+    },
+    {
+      "id": 4,
+      "title": "Inactiva x plataforma",
+      "color": "#f6ff7a",
+      "eventTextColor": "#f00",
+      "start": "2023-03-27T13:00:00.000Z",
+      "end": "2023-03-27T14:00:00.000Z",
+      "description": "Errores de CORS y TIME OUT, ya avisamos a Pablo y Plataforma.",
+      "projectId": "6",
+      "duration": 1
+    },
+    {
+      "id": 5,
+      "title": "Lazy Generico",
+      "color": "#ffb8b8",
+      "eventTextColor": "#f00",
+      "start": "2023-03-27T14:00:00.000Z",
+      "end": "2023-03-27T14:30:00.000Z",
+      "description": null,
+      "projectId": "2",
+      "duration": 0.5
+    },
+    {
+      "id": 6,
+      "title": "Almuerzo",
+      "color": "#c4c4c4",
+      "eventTextColor": "#f00",
+      "start": "2023-03-27T14:30:00.000Z",
+      "end": "2023-03-27T15:30:00.000Z",
+      "description": null,
+      "projectId": "4",
+      "duration": 1
+    },
+    {
+      "id": 7,
+      "title": "Inactiva x plataforma",
+      "color": "#f6ff7a",
+      "eventTextColor": "#f00",
+      "start": "2023-03-27T15:30:00.000Z",
+      "end": "2023-03-27T16:00:00.000Z",
+      "description": null,
+      "projectId": "6",
+      "duration": 0.5
+    },
+    {
+      "id": 8,
+      "title": "Lazy Genérico",
+      "color": "#ffb8b8",
+      "eventTextColor": "#f00",
+      "start": "2023-03-27T16:00:00.000Z",
+      "end": "2023-03-27T16:30:00.000Z",
+      "description": null,
+      "projectId": "2",
+      "duration": 0.5
+    },
+    {
+      "id": 9,
+      "title": "Inactiva x plataforma",
+      "color": "#f6ff7a",
+      "eventTextColor": "#f00",
+      "start": "2023-03-27T16:30:00.000Z",
+      "end": "2023-03-27T17:30:00.000Z",
+      "description": null,
+      "projectId": "6",
+      "duration": 1
+    },
+    {
+      "id": 10,
+      "title": "Lazy Genérico",
+      "color": "#ffb8b8",
+      "eventTextColor": "#f00",
+      "start": "2023-03-27T17:30:00.000Z",
+      "end": "2023-03-27T18:00:00.000Z",
+      "description": null,
+      "projectId": "2",
+      "duration": 0.5
     }
   ],
   "projects": [
     {
       "id": 1,
-      "nombre": "PORTAL",
-      "dt": "345",
-      "color": "#bdfeff",
-      "descripcion": "Portal de Novedades ITP",
-      "notas": "Responsable: Julio Lanzani.\nLinks de interes: http://www.google.com.ar"
+      "nombre": "SCP",
+      "dt": "33908",
+      "color": "#ff6666",
+      "descripcion": "Sist. de Cartera Prendaria",
+      "notas": "P. Forestano"
     },
     {
       "id": 2,
       "nombre": "WTR",
-      "dt": "DT346",
-      "color": "#8EE194",
-      "descripcion": "Sistema de WTR",
-      "notas": "responsable: pablo forestano"
+      "dt": "39709",
+      "color": "#ffb8b8",
+      "descripcion": "Sist. de Seguimiento y Control de Documentación",
+      "notas": "P. Forestano"
     },
     {
       "id": 3,
       "nombre": "FDE",
-      "dt": "DT347",
-      "color": "#ff1100",
-      "descripcion": "Sistema de Deudores",
-      "notas": "responsable: pablo forestano"
+      "dt": "39708",
+      "color": "#d35555",
+      "descripcion": "Sist. Régimen de Deudores del Sist. Financiero",
+      "notas": "P. Forestano"
+    },
+    {
+      "id": 4,
+      "nombre": "Almuerzo",
+      "dt": "",
+      "color": "#c4c4c4",
+      "descripcion": "",
+      "notas": null
+    },
+    {
+      "id": 5,
+      "nombre": "ITP",
+      "dt": null,
+      "color": "#4b7dce",
+      "descripcion": "Dailys & otras",
+      "notas": null
+    },
+    {
+      "id": 6,
+      "nombre": "Inactividad",
+      "dt": null,
+      "color": "#f6ff7a",
+      "descripcion": null,
+      "notas": null
     }
   ]
 }
